@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        /* Body Styles for Dark Gradient Theme */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #1c1c1c, #34495e); /* Dark gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #ecf0f1;
+        }
+
+        /* Container for the input and results */
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            width: 320px;
+        }
+
+        /* Heading Style */
+        h1 {
+            color: #ecf0f1;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Input Field Styles */
+        input {
+            padding: 12px;
+            margin: 10px 0;
+            width: 90%;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 2px solid #16a085;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1abc9c; /* Lighter green border on focus */
+        }
+
+        /* Button Styles */
+        button {
+            padding: 12px 20px;
+            background-color: #16a085;
+            color: #ecf0f1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Result Message Styles */
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .palindrome {
+            color: #2ecc71;  /* Green for palindrome */
+        }
+
+        .not-palindrome {
+            color: #e74c3c;  /* Red for non-palindrome */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Palindrome Checker</h1>
+    <input type="text" id="inputText" placeholder="Enter text to check">
+    <button onclick="checkPalindrome()">Check</button>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function checkPalindrome() {
+        let text = document.getElementById('inputText').value.trim();
+        
+        // Remove non-alphanumeric characters and convert to lowercase
+        let cleanedText = text.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        
+        // Reverse the cleaned text
+        let reversedText = cleanedText.split('').reverse().join('');
+        
+        // Check if the cleaned text is equal to the reversed text
+        if (cleanedText === reversedText && cleanedText !== '') {
+            document.getElementById('result').textContent = `"${text}" is a palindrome!`;
+            document.getElementById('result').classList.add('palindrome');
+            document.getElementById('result').classList.remove('not-palindrome');
+        } else {
+            document.getElementById('result').textContent = `"${text}" is not a palindrome.`;
+            document.getElementById('result').classList.add('not-palindrome');
+            document.getElementById('result').classList.remove('palindrome');
+        }
+    }
+</script>
+
+</body>
+</html>
+
